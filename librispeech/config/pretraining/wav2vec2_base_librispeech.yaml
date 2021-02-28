@@ -4,15 +4,18 @@ common:
   fp16: true
   log_format: json
   log_interval: 200
+  _name: libri_base_test
+  tensorboard_logdir: /mnt/irisgpfs/users/lnguyen/bsp_s6/experiments/librispeech/tensorboard
 
 checkpoint:
   save_interval_updates: 25000
   keep_interval_updates: 1
   no_epoch_checkpoints: true
+  save_dir: /mnt/irisgpfs/users/lnguyen/bsp_s6/experiments/librispeech/checkpoint
 
 task:
   _name: audio_pretraining
-  data: ???
+  data: /mnt/irisgpfs/users/lnguyen/bsp_s6/experiments/librispeech/manifest/test-clean
   max_sample_size: 250000
   min_sample_size: 32000
   normalize: false
@@ -23,7 +26,7 @@ dataset:
   skip_invalid_size_inputs_valid_test: true
 
 distributed_training:
-  distributed_world_size: 64
+  distributed_world_size: 4
   ddp_backend: legacy_ddp
 
 criterion:
@@ -35,6 +38,7 @@ criterion:
 optimization:
   max_update: 400000
   lr: [0.0005]
+  update_freq: [16]
 
 optimizer:
   _name: adam
