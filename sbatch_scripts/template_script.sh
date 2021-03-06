@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH -J prelib
 #SBATCH --mail-type=begin,fail
-#SBATCH --mail-user=le.nguyen.001@student.uni.lu
+#SBATCH --mail-user=<email address>
 #SBATCH -N 4
 #SBATCH --ntasks-per-node=4
 #SBATCH --gpus-per-task=1
